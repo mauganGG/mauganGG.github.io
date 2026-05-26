@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amicale Cynophile Sportive de Tilly-sur-Seulles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #2d5a27;
+    --green-light: #4a7c42;
+    --green-pale: #eef4ec;
+    --green-mid: #c8dcc5;
+    --sand: #f7f4ef;
+    --text: #1a1a18;
+    --text-muted: #5c5c58;
+    --white: #ffffff;
+    --border: #e0dbd4;
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo img {
+    height: 40px; width: auto;
+  }
+  .nav-logo span {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    color: var(--green);
+    line-height: 1.2;
+    max-width: 160px;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-light) !important; color: white !important; }
+
+  .nav-burger {
+    display: none;
+    flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .nav-burger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+
+  /* HERO */
+  .hero {
+    margin-top: 64px;
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+    background: var(--sand);
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--green-pale);
+    color: var(--green);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 100px;
+    width: fit-content; margin-bottom: 1.5rem;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; }
+
+  .hero-text h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-text h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .hero-text p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: var(--green);
+    padding: 14px 0;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    border-bottom: 1.5px solid var(--green);
+    transition: opacity 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { opacity: 0.7; }
+
+  .hero-info {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex; gap: 2rem;
+  }
+  .hero-info-item { display: flex; flex-direction: column; }
+  .hero-info-item strong { font-size: 1.4rem; font-weight: 600; color: var(--green); }
+  .hero-info-item span { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(45,90,39,0.15) 0%, transparent 60%);
+  }
+
+  /* SECTIONS COMMUNES */
+  section { padding: 6rem 2rem; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 580px;
+    line-height: 1.8;
+  }
+
+  /* À PROPOS */
+  #club {
+    background: var(--white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .about-image {
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .about-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .about-image:hover img { transform: scale(1.03); }
+
+  .about-content h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .about-content p {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .about-pillars {
+    margin-top: 2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .pillar {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .pillar-icon {
+    width: 36px; height: 36px; min-width: 36px;
+    background: var(--green-pale);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .pillar-text strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .pillar-text span { font-size: 13px; color: var(--text-muted); }
+
+  /* HORAIRES */
+  .schedule-block {
+    background: var(--sand);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+  .schedule-block h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--green);
+  }
+  .schedule-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .schedule-col h4 {
+    font-size: 13px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--text-muted);
+    margin-bottom: 0.8rem; padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .schedule-col ul { list-style: none; }
+  .schedule-col li {
+    font-size: 13px; color: var(--text);
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--border);
+    display: flex; flex-direction: column;
+  }
+  .schedule-col li span { font-size: 11px; color: var(--green); font-weight: 600; }
+
+  /* ACTIVITÉS */
+  #activites {
+    background: var(--sand);
+  }
+
+  .activities-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+  }
+
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .activity-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .activity-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(45,90,39,0.1);
+  }
+
+  .activity-img {
+    height: 200px;
+    overflow: hidden;
+  }
+  .activity-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .activity-card:hover .activity-img img { transform: scale(1.05); }
+
+  .activity-body {
+    padding: 1.5rem;
+  }
+  .activity-tag {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--green);
+    background: var(--green-pale); padding: 3px 8px; border-radius: 100px;
+    margin-bottom: 0.8rem; display: inline-block;
+  }
+  .activity-body h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+  .activity-body p {
+    font-size: 14px; color: var(--text-muted); line-height: 1.7;
+  }
+
+  /* MONITEURS */
+  #moniteurs { background: var(--white); }
+
+  .monitors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .monitor-card {
+    text-align: center;
+  }
+
+  .monitor-avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--green-pale);
+  }
+  .monitor-avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .monitor-avatar-placeholder {
+    width: 100%; height: 100%;
+    background: var(--green-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+  }
+
+  .monitor-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .monitor-card ul {
+    list-style: none;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  .monitor-badge {
+    display: inline-block;
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    background: var(--green-pale); color: var(--green);
+    padding: 2px 8px; border-radius: 100px;
+    margin-bottom: 0.5rem;
+  }
+
+  .monitors-in-training {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .monitors-in-training h3 {
+    font-size: 1rem; font-weight: 600; color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase; letter-spacing: 0.06em; font-size: 12px;
+  }
+
+  /* TARIFS */
+  #tarifs { background: var(--sand); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .pricing-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pricing-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(45,90,39,0.08);
+  }
+  .pricing-card.featured {
+    border: 2px solid var(--green);
+  }
+  .pricing-featured-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--green); color: white;
+    font-size: 11px; font-weight: 600; padding: 3px 14px; border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .pricing-label {
+    font-size: 13px; color: var(--text-muted); font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .pricing-amount {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .pricing-amount sup { font-size: 1.4rem; vertical-align: super; }
+  .pricing-per {
+    font-size: 12px; color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+  .pricing-features li {
+    font-size: 13px; color: var(--text);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .pricing-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pricing-note {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--green-pale);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .pricing-note strong { color: var(--green); }
+
+  /* GALERIE */
+  #galerie { background: var(--white); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 12px;
+    margin-top: 3rem;
+  }
+
+  .gallery-item {
+    overflow: hidden;
+    border-radius: var(--radius);
+    aspect-ratio: 4/3;
+    cursor: pointer;
+  }
+  .gallery-item:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  /* AGENDA */
+  #agenda { background: var(--sand); }
+
+  .agenda-list {
+    margin-top: 3rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .agenda-empty {
+    background: white;
+    border-radius: var(--radius);
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-muted);
+    border: 1px dashed var(--border);
+  }
+  .agenda-empty p { margin-top: 0.5rem; font-size: 14px; }
+
+  /* CONTACT */
+  #contact { background: var(--white); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .contact-item-icon {
+    width: 40px; height: 40px; min-width: 40px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .contact-item-text strong { display: block; font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+  .contact-item-text span { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+  .contact-item-text a { color: var(--green); text-decoration: none; }
+
+  .social-links {
+    display: flex; gap: 0.8rem; margin-top: 2rem;
+  }
+  .social-link {
+    width: 40px; height: 40px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 18px;
+    color: var(--green);
+    transition: background 0.2s;
+  }
+  .social-link:hover { background: var(--green-mid); }
+
+  .contact-form {
+    background: var(--sand);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 600;
+    margin-bottom: 6px; color: var(--text);
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    background: white;
+    color: var(--text);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--green);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--green-light); }
+
+  /* PARTENAIRES */
+  #partenaires { background: var(--sand); padding: 4rem 2rem; }
+
+  .partners-header { text-align: center; margin-bottom: 3rem; }
+  .partners-header p {
+    font-size: 13px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-muted);
+  }
+
+  .partners-grid {
+    display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: center;
+    gap: 2rem;
+  }
+
+  .partner-logo {
+    display: flex; align-items: center;
+    opacity: 0.65;
+    transition: opacity 0.2s;
+    max-height: 60px;
+  }
+  .partner-logo:hover { opacity: 1; }
+  .partner-logo img { max-height: 50px; max-width: 140px; object-fit: contain; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.6);
+    padding: 3rem 2rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-brand p {
+    font-size: 13px; line-height: 1.8; margin-top: 1rem;
+    max-width: 260px;
+  }
+  .footer-brand img {
+    height: 40px; width: auto; filter: brightness(10);
+    opacity: 0.9;
+  }
+
+  .footer-col h4 {
+    color: white; font-size: 13px; font-weight: 600;
+    margin-bottom: 1rem; text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.5rem; }
+  .footer-col a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: white; }
+
+  .footer-bottom {
+    max-width: 1100px; margin: 2rem auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; flex-wrap: wrap; gap: 0.5rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { height: 300px; }
+    .hero-text { padding: 3rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .activities-grid { grid-template-columns: 1fr 1fr; }
+    .monitors-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-column: span 2; }
+    .schedule-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 620px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem; gap: 1rem;
+    }
+    .nav-burger { display: flex; }
+    .hero { min-height: auto; }
+    .activities-grid { grid-template-columns: 1fr; }
+    .monitors-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:first-child { grid-column: auto; aspect-ratio: 4/3; }
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#accueil" class="nav-logo">
+    <img src="https://acstillysurseulles.e-monsite.com/medias/site/logos/ban-amicalecynophilesportive-2023-02.jpg" alt="Logo ACS Tilly-sur-Seulles" style="display:none">
+    <span>ACS Tilly‑sur‑Seulles</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#club">Le club</a></li>
+    <li><a href="#activites">Activités</a></li>
+    <li><a href="#moniteurs">Moniteurs</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://amicale-cynophile-sportive-de-tilly-sur-seulles.s2.yapla.com/fr/acsts-7964/adhesion/" target="_blank" class="nav-cta">Adhérer</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-text">
+    <div class="hero-badge">Tilly-sur-Seulles · Calvados</div>
+    <h1>Éduquez votre chien avec <em>bienveillance</em></h1>
+    <p>L'Amicale Cynophile Sportive de Tilly-sur-Seulles vous accueille chaque samedi après-midi pour des cours d'éducation, d'agility et bien plus encore.</p>
+    <div class="hero-actions">
+      <a href="#activites" class="btn-primary">Découvrir nos activités</a>
+      <a href="#contact" class="btn-secondary">Nous contacter</a>
+    </div>
+    <div class="hero-info">
+      <div class="hero-info-item">
+        <strong>Samedis</strong>
+        <span>14h – 17h</span>
+      </div>
+      <div class="hero-info-item">
+        <strong>1 séance</strong>
+        <span>d'essai gratuite</span>
+      </div>
+      <div class="hero-info-item">
+        <strong>+30 ans</strong>
+        <span>d'expérience</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCI+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjZThmMGU1Ii8+CiAgPHJlY3QgeT0iNTAwIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNjOGRjYzUiLz4KICA8ZWxsaXBzZSBjeD0iOTAwIiBjeT0iMjAwIiByeD0iMzAwIiByeT0iMTgwIiBmaWxsPSIjZDRlOGQwIiBvcGFjaXR5PSIwLjUiLz4KICA8ZWxsaXBzZSBjeD0iMzAwIiBjeT0iNTIwIiByeD0iODAiIHJ5PSI1MCIgZmlsbD0iIzhhYWI4MiIgb3BhY2l0eT0iMC43Ii8+CiAgPHJlY3QgeD0iMjIwIiB5PSI0OTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzAiIGZpbGw9IiM3YTliNzIiLz4KICA8cmVjdCB4PSI3MDAiIHk9IjQ0MCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNWM3YTU1Ii8+CiAgPHJlY3QgeD0iOTAwIiB5PSI0NDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4MCIgZmlsbD0iIzVjN2E1NSIvPgogIDxyZWN0IHg9IjY5MCIgeT0iNDUwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZTA3MDMwIiByeD0iNSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc1MCwzNTApIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMCIgcng9IjYwIiByeT0iMjgiIGZpbGw9IiM0YTM1MjAiIHRyYW5zZm9ybT0icm90YXRlKC0yMCkiLz4KICAgIDxjaXJjbGUgY3g9IjU1IiBjeT0iLTI1IiByPSIyMiIgZmlsbD0iIzRhMzUyMCIvPgogICAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iLTE4IiByeD0iMTIiIHJ5PSI5IiBmaWxsPSIjNmE1MDMwIi8+CiAgICA8ZWxsaXBzZSBjeD0iNDgiIGN5PSItNDIiIHJ4PSIxMCIgcnk9IjE2IiBmaWxsPSIjM2EyNTEwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAsNDgsLTQyKSIvPgogICAgPGxpbmUgeDE9Ii0zMCIgeTE9IjE1IiB4Mj0iLTUwIiB5Mj0iNTUiIHN0cm9rZT0iIzRhMzUyMCIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iLTEwIiB5MT0iMjAiIHgyPSItNSIgeTI9IjYwIiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9IjMwIiB5MT0iMTAiIHgyPSI2MCIgeTI9IjQwIiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9IjEwIiB5MT0iMTgiIHgyPSIyMCIgeTI9IjU1IiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KICA8bGluZSB4MT0iMCIgeTE9IjUwMCIgeDI9IjEyMDAiIHkyPSI1MDAiIHN0cm9rZT0iI2E4YzhhNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMzUwIiByPSI2MCIgZmlsbD0iIzZhOTg2MiIgb3BhY2l0eT0iMC40Ii8+CiAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iMzIwIiByPSI1MCIgZmlsbD0iIzVhODg1MiIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTIwIiB5PSIzODAiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiM0YTYwNDAiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjEwNTAiIGN5PSIzNzAiIHI9IjU1IiBmaWxsPSIjNmE5ODYyIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIxMTAwIiBjeT0iMzQwIiByPSI0NSIgZmlsbD0iIzVhODg1MiIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTA2NSIgeT0iMzkwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTEwIiBmaWxsPSIjNGE2MDQwIiBvcGFjaXR5PSIwLjQiLz4KPC9zdmc+" alt="Femme avec son chien en agility" loading="eager">
+    <div class="hero-image-overlay"></div>
+  </div>
+</section>
+
+<!-- LE CLUB -->
+<section id="club">
+  <div class="container">
+    <p class="section-tag">Notre association</p>
+    <h2 class="section-title">Un club fondé sur le<br>renforcement positif</h2>
+
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgNjgwIj4KICA8cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjY4MCIgZmlsbD0iI2VlZjRlYyIvPgogIDxyZWN0IHk9IjUwMCIgd2lkdGg9IjkwMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNjOGRjYzUiLz4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIzODAiIHI9IjcwIiBmaWxsPSIjNmE5ODYyIiBvcGFjaXR5PSIwLjM1Ii8+CiAgPHJlY3QgeD0iODMiIHk9IjQ0MCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjYwIiBmaWxsPSIjNGE2MDQwIiBvcGFjaXR5PSIwLjM1Ii8+CiAgPHJlY3QgeD0iNjAwIiB5PSIzNTAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiM4YWFiODIiIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9Ijc1MCIgeT0iMzUwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjOGFhYjgyIiBvcGFjaXR5PSIwLjUiLz4KICA8cmVjdCB4PSI1OTUiIHk9IjM4MCIgd2lkdGg9IjE3MCIgaGVpZ2h0PSI4IiBmaWxsPSIjZTA3MDMwIiBvcGFjaXR5PSIwLjUiIHJ4PSI0Ii8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIwLDIwMCkiPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjMyIiBmaWxsPSIjZDRhODgwIi8+CiAgICA8cmVjdCB4PSItMjgiIHk9IjMyIiB3aWR0aD0iNTYiIGhlaWdodD0iMTUwIiBmaWxsPSIjM2E2MDkwIiByeD0iMTAiLz4KICAgIDxsaW5lIHgxPSIyOCIgeTE9IjgwIiB4Mj0iODAiIHkyPSIxNTAiIHN0cm9rZT0iI2Q0YTg4MCIgc3Ryb2tlLXdpZHRoPSIxOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cmVjdCB4PSItMjIiIHk9IjE3OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjMmEzMDYwIiByeD0iNiIvPgogICAgPHJlY3QgeD0iNSIgeT0iMTc4IiB3aWR0aD0iMjAiIGhlaWdodD0iODAiIGZpbGw9IiMyYTMwNjAiIHJ4PSI2Ii8+CiAgPC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQyMCwzNDApIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMzAiIHJ4PSI0NSIgcnk9IjM1IiBmaWxsPSIjYzA5MDUwIi8+CiAgICA8Y2lyY2xlIGN4PSIyMCIgY3k9Ii01IiByPSIzMCIgZmlsbD0iI2MwOTA1MCIvPgogICAgPGVsbGlwc2UgY3g9IjMwIiBjeT0iLTI4IiByeD0iMTAiIHJ5PSIxOCIgZmlsbD0iI2E4NzA0MCIvPgogICAgPGVsbGlwc2UgY3g9IjgiIGN5PSItMjYiIHJ4PSIxMCIgcnk9IjE4IiBmaWxsPSIjYTg3MDQwIi8+CiAgICA8Y2lyY2xlIGN4PSIxNCIgY3k9IjAiIHI9IjciIGZpbGw9IiMxYTBhMDAiLz4KICAgIDxjaXJjbGUgY3g9IjI4IiBjeT0iLTIiIHI9IjciIGZpbGw9IiMxYTBhMDAiLz4KICAgIDxjaXJjbGUgY3g9IjE2IiBjeT0iLTEiIHI9IjIiIGZpbGw9IndoaXRlIi8+CiAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9Ii0zIiByPSIyIiBmaWxsPSJ3aGl0ZSIvPgogICAgPGVsbGlwc2UgY3g9IjM3IiBjeT0iOCIgcng9IjEyIiByeT0iOCIgZmlsbD0iI2Q0YjA2MCIvPgogICAgPGNpcmNsZSBjeD0iMzgiIGN5PSI4IiByPSI1IiBmaWxsPSIjZDA3MDgwIi8+CiAgICA8cGF0aCBkPSJNIC00MyAyNSBRIC03MCAwIC02MCAtMjAiIHN0cm9rZT0iI2MwOTA1MCIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxsaW5lIHgxPSItMTAiIHkxPSI1NSIgeDI9Ii0zMCIgeTI9IjgwIiBzdHJva2U9IiNjMDkwNTAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9IjEwIiB5MT0iNjAiIHgyPSI1IiB5Mj0iOTAiIHN0cm9rZT0iI2MwOTA1MCIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPC9nPgo8L3N2Zz4=" alt="Chien en agility" loading="lazy">
+      </div>
+      <div class="about-content">
+        <h3>Qui sommes-nous ?</h3>
+        <p>L'Amicale Cynophile Sportive de Tilly-sur-Seulles est une association loi 1901 fondée sur la passion de la cynophilie et le bien-être animal. Nos moniteurs bénévoles, diplômés par la Centrale Canine, accompagnent chiens et maîtres depuis plus de 30 ans.</p>
+        <p>Notre philosophie : éduquer dans le jeu et le respect, en utilisant exclusivement des méthodes de renforcement positif. Nous croyons que la complicité entre un chien et son maître se construit dans la bienveillance.</p>
+
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🎯</div>
+            <div class="pillar-text">
+              <strong>Renforcement positif exclusif</strong>
+              <span>Méthode naturelle, sans contrainte</span>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🏅</div>
+            <div class="pillar-text">
+              <strong>Moniteurs diplômés Centrale Canine</strong>
+              <span>Certifiés CNEAC, expérimentés en compétition</span>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">📍</div>
+            <div class="pillar-text">
+              <strong>Rue Jacques Prévert, Tilly-sur-Seulles</strong>
+              <span>Entre Bayeux et Villers-Bocage, dans le Calvados</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horaires -->
+    <div class="schedule-block">
+      <h3>📅 Horaires des cours — tous les samedis de 14h00 à 17h00</h3>
+      <div class="schedule-grid">
+        <div class="schedule-col">
+          <h4>Terrain 1</h4>
+          <ul>
+            <li><span>14h00 – 15h30</span>Agility confirmés</li>
+            <li><span>15h30 – 17h00</span>Agility intermédiaire</li>
+          </ul>
+        </div>
+        <div class="schedule-col">
+          <h4>Terrain 2</h4>
+          <ul>
+            <li><span>14h00 – 15h00</span>École du chiot</li>
+            <li><span>15h00 – 16h00</span>Éducation chien adulte</li>
+            <li><span>16h00 – 17h00</span>Agility débutant</li>
+          </ul>
+        </div>
+        <div class="schedule-col">
+          <h4>Terrain 3</h4>
+          <ul>
+            <li><span>14h00 – 15h00</span>École du chiot</li>
+            <li><span>15h00 – 16h00</span>Éducation chien adulte</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITÉS -->
+<section id="activites">
+  <div class="container">
+    <div class="activities-header">
+      <div>
+        <p class="section-tag">Ce que nous proposons</p>
+        <h2 class="section-title">Nos activités</h2>
+      </div>
+      <p class="section-intro" style="max-width:320px; font-size:0.95rem;">Pour tous les chiens, tous les niveaux, tous les âges.</p>
+    </div>
+    <div class="activities-grid">
+
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2Y1ZjBlOCIvPgogIDxyZWN0IHk9IjQyMCIgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNkNGM4YTgiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjAsMjgwKSI+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9IjMwIiByeD0iMzUiIHJ5PSI0NSIgZmlsbD0iI2M4YTA2MCIvPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9Ii0xNSIgcj0iMjgiIGZpbGw9IiNjOGEwNjAiLz4KICAgIDxlbGxpcHNlIGN4PSIxNCIgY3k9Ii0zNSIgcng9IjkiIHJ5PSIxNiIgZmlsbD0iI2I4OTA1MCIgdHJhbnNmb3JtPSJyb3RhdGUoMTUsMTQsLTM1KSIvPgogICAgPGVsbGlwc2UgY3g9Ii0xNCIgY3k9Ii0zNSIgcng9IjkiIHJ5PSIxNiIgZmlsbD0iI2I4OTA1MCIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1LC0xNCwtMzUpIi8+CiAgICA8Y2lyY2xlIGN4PSI4IiBjeT0iLTEwIiByPSI1IiBmaWxsPSIjMmExYTBhIi8+CiAgICA8Y2lyY2xlIGN4PSItOCIgY3k9Ii0xMCIgcj0iNSIgZmlsbD0iIzJhMWEwYSIvPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSIwIiByeD0iOCIgcnk9IjYiIGZpbGw9IiNkNGIwNzAiLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIzIiByPSI2IiBmaWxsPSIjZDA3MDgwIi8+CiAgPC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUyMCwzMDApIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMjAiIHJ4PSI0MCIgcnk9IjMwIiBmaWxsPSIjOGE2MDQwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzApIi8+CiAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9Ii0yMCIgcj0iMjQiIGZpbGw9IiM4YTYwNDAiLz4KICAgIDxlbGxpcHNlIGN4PSI0MiIgY3k9Ii0zMiIgcng9IjgiIHJ5PSIxNCIgZmlsbD0iIzdhNTAzMCIvPgogICAgPGNpcmNsZSBjeD0iMzgiIGN5PSItMTQiIHI9IjQiIGZpbGw9IiMyYTFhMGEiLz4KICAgIDxlbGxpcHNlIGN4PSI1MCIgY3k9Ii0xMCIgcng9IjEwIiByeT0iNyIgZmlsbD0iIzlhNzA1MCIvPgogICAgPGxpbmUgeDE9Ii0yMCIgeTE9IjAiIHgyPSItNDAiIHkyPSItMjAiIHN0cm9rZT0iIzhhNjA0MCIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9Ii0xMCIgeTI9Ii0zMCIgc3Ryb2tlPSIjOGE2MDQwIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KICA8Y2lyY2xlIGN4PSIzODAiIGN5PSIzOTAiIHI9IjI1IiBmaWxsPSIjZTA2MDMwIi8+Cjwvc3ZnPg==" alt="École du chiot" loading="lazy">
+        </div>
+        <div class="activity-body">
+          <span class="activity-tag">Dès 2 mois</span>
+          <h3>École du chiot</h3>
+          <p>Sociabilisation, courage et premières bases d'éducation pour bien démarrer avec votre nouveau compagnon.</p>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2VlZjRlYyIvPgogIDxyZWN0IHk9IjQ1MCIgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNjOGRjYzUiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTAsMTUwKSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMzAiIGZpbGw9IiM1YTQwMzAiLz4KICAgIDxyZWN0IHg9Ii0yNSIgeT0iMzAiIHdpZHRoPSI1MCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiMzYTUwNzAiIHJ4PSI4Ii8+CiAgICA8cmVjdCB4PSItMjUiIHk9IjMwIiB3aWR0aD0iMjIiIGhlaWdodD0iMTMwIiBmaWxsPSIjMmE0MDYwIiByeD0iNiIvPgogICAgPGxpbmUgeDE9IjI1IiB5MT0iNjAiIHgyPSIxMjAiIHkyPSI4MCIgc3Ryb2tlPSIjNWE0MDMwIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxyZWN0IHg9Ii0yMCIgeT0iMTY1IiB3aWR0aD0iMTgiIGhlaWdodD0iOTAiIGZpbGw9IiMyYTMwNTAiIHJ4PSI2Ii8+CiAgICA8cmVjdCB4PSI1IiB5PSIxNjUiIHdpZHRoPSIxOCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzJhMzA1MCIgcng9IjYiLz4KICA8L2c+CiAgPHBhdGggZD0iTSAzNzAgMjMwIFEgNDUwIDIxMCA0ODAgMjgwIiBzdHJva2U9IiM4YTcwNjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iNSwzIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDgwLDMxMCkiPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSIyMCIgcng9IjMyIiByeT0iMzgiIGZpbGw9IiNjMDkwNTAiLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSItMTgiIHI9IjI2IiBmaWxsPSIjYzA5MDUwIi8+CiAgICA8ZWxsaXBzZSBjeD0iMTIiIGN5PSItMzYiIHJ4PSI4IiByeT0iMTQiIGZpbGw9IiNhODcwNDAiLz4KICAgIDxlbGxpcHNlIGN4PSItMTIiIGN5PSItMzYiIHJ4PSI4IiByeT0iMTQiIGZpbGw9IiNhODcwNDAiLz4KICAgIDxjaXJjbGUgY3g9IjciIGN5PSItMTIiIHI9IjUiIGZpbGw9IiMyYTFhMGEiLz4KICAgIDxjaXJjbGUgY3g9Ii03IiBjeT0iLTEyIiByPSI1IiBmaWxsPSIjMmExYTBhIi8+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0yIiByeD0iNyIgcnk9IjUiIGZpbGw9IiNkNGIwNjAiLz4KICAgIDxsaW5lIHgxPSIyNSIgeTE9IjEwIiB4Mj0iNTUiIHkyPSItMTAiIHN0cm9rZT0iI2MwOTA1MCIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8ZWxsaXBzZSBjeD0iNjAiIGN5PSItMTMiIHJ4PSIxMiIgcnk9IjkiIGZpbGw9IiNiMDgwNDAiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Éducation chien adulte" loading="lazy">
+        </div>
+        <div class="activity-body">
+          <span class="activity-tag">Chien adulte</span>
+          <h3>Éducation canine</h3>
+          <p>Pour rendre votre chien adulte mieux éduqué et plus sociable, ou parfaire l'éducation après l'école du chiot.</p>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2U4ZjBlNSIvPgogIDxyZWN0IHk9IjQ3MCIgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMzAiIGZpbGw9IiNiOGQwYjUiLz4KICA8cG9seWdvbiBwb2ludHM9IjEyMCw0NzAgMjAwLDI3MCAyODAsNDcwIiBmaWxsPSIjNGE3YTQyIiBvcGFjaXR5PSIwLjgiLz4KICA8cG9seWdvbiBwb2ludHM9IjEyMCw0NzAgMjAwLDI3MCAxNDAsNDcwIiBmaWxsPSIjM2E2YTMyIiBvcGFjaXR5PSIwLjgiLz4KICA8bGluZSB4MT0iMzgwIiB5MT0iMzAwIiB4Mj0iMzgwIiB5Mj0iNDcwIiBzdHJva2U9IiNlMDcwMzAiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxsaW5lIHgxPSI0MTAiIHkxPSIzMDAiIHgyPSI0MTAiIHkyPSI0NzAiIHN0cm9rZT0iI2UwNzAzMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPGxpbmUgeDE9IjQ0MCIgeTE9IjMwMCIgeDI9IjQ0MCIgeTI9IjQ3MCIgc3Ryb2tlPSIjZTA3MDMwIiBzdHJva2Utd2lkdGg9IjYiLz4KICA8bGluZSB4MT0iNDcwIiB5MT0iMzAwIiB4Mj0iNDcwIiB5Mj0iNDcwIiBzdHJva2U9IiNlMDcwMzAiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxsaW5lIHgxPSI1MDAiIHkxPSIzMDAiIHgyPSI1MDAiIHkyPSI0NzAiIHN0cm9rZT0iI2UwNzAzMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPGVsbGlwc2UgY3g9IjY1MCIgY3k9IjQzMCIgcng9IjUwIiByeT0iNDAiIGZpbGw9IiM1YTg4NTIiIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjYwMCIgeT0iNDAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNGE3ODQyIi8+CiAgPGVsbGlwc2UgY3g9IjY1MCIgY3k9IjQwMCIgcng9IjUwIiByeT0iMzUiIGZpbGw9IiM2YTk4NjIiIG9wYWNpdHk9IjAuNiIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMxMCwzODApIHJvdGF0ZSgtMTUpIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMCIgcng9IjUwIiByeT0iMjIiIGZpbGw9IiMyYTJhMmEiLz4KICAgIDxlbGxpcHNlIGN4PSIzMCIgY3k9Ii01IiByeD0iMjUiIHJ5PSIxNiIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iNDgiIGN5PSItMTgiIHI9IjE4IiBmaWxsPSIjMmEyYTJhIi8+CiAgICA8Y2lyY2xlIGN4PSI1NCIgY3k9Ii0yNiIgcj0iNiIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iNTYiIGN5PSItMTIiIHI9IjUiIGZpbGw9IiMxYTFhMWEiLz4KICAgIDxlbGxpcHNlIGN4PSI2MCIgY3k9Ii0xMiIgcng9IjkiIHJ5PSI2IiBmaWxsPSIjM2EzYTNhIi8+CiAgICA8bGluZSB4MT0iLTMwIiB5MT0iMTUiIHgyPSItNDUiIHkyPSI0NSIgc3Ryb2tlPSIjMmEyYTJhIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9Ii0xMCIgeTE9IjE4IiB4Mj0iMCIgeTI9IjUwIiBzdHJva2U9IiMyYTJhMmEiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIxMiIgeDI9IjQwIiB5Mj0iMzUiIHN0cm9rZT0iIzJhMmEyYSIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxsaW5lIHgxPSI1IiB5MT0iMTgiIHgyPSIxNSIgeTI9IjUwIiBzdHJva2U9IiMyYTJhMmEiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPC9nPgo8L3N2Zz4=" alt="Agility" loading="lazy">
+        </div>
+        <div class="activity-body">
+          <span class="activity-tag">Tous niveaux</span>
+          <h3>Agility</h3>
+          <p>Activité sportive et ludique accessible à tous. Débutant, intermédiaire ou confirmé — venez tester !</p>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2UwZWNkOCIvPgogIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSI0NTAiIHJ4PSIzMDAiIHJ5PSIyMDAiIGZpbGw9IiNiOGQwYjAiIG9wYWNpdHk9IjAuNyIvPgogIDxlbGxpcHNlIGN4PSI2NTAiIGN5PSI0MzAiIHJ4PSIyODAiIHJ5PSIxODAiIGZpbGw9IiNhOGMwYTAiIG9wYWNpdHk9IjAuNyIvPgogIDxlbGxpcHNlIGN4PSI0MDAiIGN5PSI1MDAiIHJ4PSI1MDAiIHJ5PSIxNTAiIGZpbGw9IiNjOGQ4YzAiLz4KICA8cGF0aCBkPSJNIDUwIDU2MCBRIDMwMCA0ODAgNTAwIDUyMCBRIDY1MCA1NTAgNzUwIDUwMCIgc3Ryb2tlPSIjZDRjMDkwIiBzdHJva2Utd2lkdGg9IjIwIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjgiLz4KICA8Y2lyY2xlIGN4PSI4MCIgY3k9IjM2MCIgcj0iNDAiIGZpbGw9IiM0YTgwNDAiLz4KICA8cmVjdCB4PSI3MyIgeT0iMzk1IiB3aWR0aD0iMTQiIGhlaWdodD0iNjAiIGZpbGw9IiMzYTUwMzAiLz4KICA8Y2lyY2xlIGN4PSI3MjAiIGN5PSIzNDAiIHI9IjQ1IiBmaWxsPSIjNGE4MDQwIi8+CiAgPHJlY3QgeD0iNzEzIiB5PSIzNzgiIHdpZHRoPSIxNCIgaGVpZ2h0PSI2NSIgZmlsbD0iIzNhNTAzMCIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM0MCwzNTApIj4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSItMzAiIHI9IjIwIiBmaWxsPSIjYzhhMDgwIi8+CiAgICA8cmVjdCB4PSItMTgiIHk9Ii0xMCIgd2lkdGg9IjM2IiBoZWlnaHQ9IjgwIiBmaWxsPSIjNGE2MDkwIiByeD0iNiIvPgogICAgPHJlY3QgeD0iMTUiIHk9Ii01IiB3aWR0aD0iMjIiIGhlaWdodD0iNTAiIGZpbGw9IiM4YTUwMzAiIHJ4PSI0Ii8+CiAgICA8bGluZSB4MT0iLTIwIiB5MT0iMTAiIHgyPSItNDAiIHkyPSI4MCIgc3Ryb2tlPSIjOGE3MDYwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxsaW5lIHgxPSIyMCIgeTE9IjIwIiB4Mj0iMzUiIHkyPSI3MCIgc3Ryb2tlPSIjOGE3MDYwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxyZWN0IHg9Ii0xNSIgeT0iNjgiIHdpZHRoPSIxNCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzJhMzA1MCIgcng9IjUiIHRyYW5zZm9ybT0icm90YXRlKDUsLTE1LDY4KSIvPgogICAgPHJlY3QgeD0iMyIgeT0iNjgiIHdpZHRoPSIxNCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzJhMzA1MCIgcng9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0xMCwzLDY4KSIvPgogIDwvZz4KICA8cGF0aCBkPSJNIDM1OCAzNzAgUSA0MjAgMzUwIDQ1MCAzOTAiIHN0cm9rZT0iIzhhNzA2MCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDUwLDM5MCkiPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSIxMCIgcng9IjI4IiByeT0iMjAiIGZpbGw9IiNjMDkwNTAiIHRyYW5zZm9ybT0icm90YXRlKC0xMCkiLz4KICAgIDxjaXJjbGUgY3g9IjIwIiBjeT0iLTgiIHI9IjE4IiBmaWxsPSIjYzA5MDUwIi8+CiAgICA8ZWxsaXBzZSBjeD0iMzAiIGN5PSItMjAiIHJ4PSI3IiByeT0iMTIiIGZpbGw9IiNhODcwNDAiLz4KICAgIDxjaXJjbGUgY3g9IjI3IiBjeT0iLTQiIHI9IjQiIGZpbGw9IiMyYTFhMGEiLz4KICAgIDxwYXRoIGQ9Ik0gLTI4IDUgUSAtNTAgLTE1IC00MCAtMzAiIHN0cm9rZT0iI2MwOTA1MCIgc3Ryb2tlLXdpZHRoPSI2IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Cani-rando" loading="lazy">
+        </div>
+        <div class="activity-body">
+          <span class="activity-tag">Dès 1 an</span>
+          <h3>Cani-rando</h3>
+          <p>Des balades en groupe sur les sentiers normands, à votre rythme, pour partager de bons moments avec votre chien.</p>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-img">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2Y1ZjVmMCIvPgogIDxyZWN0IHk9IjQ2MCIgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiNkMGQ4YzAiLz4KICA8cmVjdCB4PSIyNTAiIHk9IjgwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIyMCIgZmlsbD0id2hpdGUiIHJ4PSI4IiBzdHJva2U9IiNjOGIwOTAiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxyZWN0IHg9IjI2NSIgeT0iOTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iMTk1IiBmaWxsPSIjZmFmOGYwIiByeD0iNCIgc3Ryb2tlPSIjZDhjMGEwIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIxNjAiIHI9IjM1IiBmaWxsPSIjZjBlOGQwIiBzdHJva2U9IiNjOGEwNjAiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjI4IiBmaWxsPSIjOGE2MDMwIj4mIzk3MzM7PC90ZXh0PgogIDxyZWN0IHg9IjMwMCIgeT0iMjEwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgiIGZpbGw9IiNjOGEwNjAiIHJ4PSI0Ii8+CiAgPHJlY3QgeD0iMzIwIiB5PSIyMjgiIHdpZHRoPSIxNjAiIGhlaWdodD0iNiIgZmlsbD0iI2Q4YzA5MCIgcng9IjMiLz4KICA8cmVjdCB4PSIzNDAiIHk9IjI0NCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI2IiBmaWxsPSIjZDhjMDkwIiByeD0iMyIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjExIiBmaWxsPSIjOGE3MDUwIiBsZXR0ZXItc3BhY2luZz0iMiI+Q0VOVFJBTEUgQ0FOSU5FPC90ZXh0PgogIDxyZWN0IHg9IjM3MCIgeT0iMjk1IiB3aWR0aD0iNjAiIGhlaWdodD0iMTAiIGZpbGw9IiNlMDcwMzAiLz4KICA8cmVjdCB4PSIzODUiIHk9IjMwNSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZTA5MDMwIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTgwLDM1MCkiPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjI0IiBmaWxsPSIjYzA5MDcwIi8+CiAgICA8cmVjdCB4PSItMjAiIHk9IjI0IiB3aWR0aD0iNDAiIGhlaWdodD0iOTAiIGZpbGw9IiMyZDVhMjciIHJ4PSI2Ii8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSI1MCIgeDI9IjgwIiB5Mj0iNzAiIHN0cm9rZT0iI2MwOTA3MCIgc3Ryb2tlLXdpZHRoPSIxNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cmVjdCB4PSItMTgiIHk9IjExMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjU1IiBmaWxsPSIjMWEzYTE3IiByeD0iNSIvPgogICAgPHJlY3QgeD0iMyIgeT0iMTEyIiB3aWR0aD0iMTYiIGhlaWdodD0iNTUiIGZpbGw9IiMxYTNhMTciIHJ4PSI1Ii8+CiAgPC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI4MCwzOTApIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMTUiIHJ4PSIyOCIgcnk9IjIyIiBmaWxsPSIjOGE2MDQwIi8+CiAgICA8Y2lyY2xlIGN4PSIxNSIgY3k9Ii04IiByPSIyMCIgZmlsbD0iIzhhNjA0MCIvPgogICAgPGVsbGlwc2UgY3g9IjIyIiBjeT0iLTIyIiByeD0iNyIgcnk9IjEyIiBmaWxsPSIjN2E1MDMwIi8+CiAgICA8ZWxsaXBzZSBjeD0iNyIgY3k9Ii0yMCIgcng9IjciIHJ5PSIxMiIgZmlsbD0iIzdhNTAzMCIvPgogICAgPGNpcmNsZSBjeD0iMjAiIGN5PSItNCIgcj0iNCIgZmlsbD0iIzJhMWEwYSIvPgogICAgPGxpbmUgeDE9Ii0yMCIgeTE9IjI4IiB4Mj0iLTM2IiB5Mj0iNTUiIHN0cm9rZT0iIzhhNjA0MCIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxsaW5lIHgxPSI1IiB5MT0iMzIiIHgyPSIwIiB5Mj0iNTgiIHN0cm9rZT0iIzhhNjA0MCIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Formation moniteur" loading="lazy" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCI+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjZThmMGU1Ii8+CiAgPHJlY3QgeT0iNTAwIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNjOGRjYzUiLz4KICA8ZWxsaXBzZSBjeD0iOTAwIiBjeT0iMjAwIiByeD0iMzAwIiByeT0iMTgwIiBmaWxsPSIjZDRlOGQwIiBvcGFjaXR5PSIwLjUiLz4KICA8ZWxsaXBzZSBjeD0iMzAwIiBjeT0iNTIwIiByeD0iODAiIHJ5PSI1MCIgZmlsbD0iIzhhYWI4MiIgb3BhY2l0eT0iMC43Ii8+CiAgPHJlY3QgeD0iMjIwIiB5PSI0OTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzAiIGZpbGw9IiM3YTliNzIiLz4KICA8cmVjdCB4PSI3MDAiIHk9IjQ0MCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNWM3YTU1Ii8+CiAgPHJlY3QgeD0iOTAwIiB5PSI0NDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4MCIgZmlsbD0iIzVjN2E1NSIvPgogIDxyZWN0IHg9IjY5MCIgeT0iNDUwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZTA3MDMwIiByeD0iNSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc1MCwzNTApIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMCIgcng9IjYwIiByeT0iMjgiIGZpbGw9IiM0YTM1MjAiIHRyYW5zZm9ybT0icm90YXRlKC0yMCkiLz4KICAgIDxjaXJjbGUgY3g9IjU1IiBjeT0iLTI1IiByPSIyMiIgZmlsbD0iIzRhMzUyMCIvPgogICAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iLTE4IiByeD0iMTIiIHJ5PSI5IiBmaWxsPSIjNmE1MDMwIi8+CiAgICA8ZWxsaXBzZSBjeD0iNDgiIGN5PSItNDIiIHJ4PSIxMCIgcnk9IjE2IiBmaWxsPSIjM2EyNTEwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAsNDgsLTQyKSIvPgogICAgPGxpbmUgeDE9Ii0zMCIgeTE9IjE1IiB4Mj0iLTUwIiB5Mj0iNTUiIHN0cm9rZT0iIzRhMzUyMCIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iLTEwIiB5MT0iMjAiIHgyPSItNSIgeTI9IjYwIiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9IjMwIiB5MT0iMTAiIHgyPSI2MCIgeTI9IjQwIiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9IjEwIiB5MT0iMTgiIHgyPSIyMCIgeTI9IjU1IiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KICA8bGluZSB4MT0iMCIgeTE9IjUwMCIgeDI9IjEyMDAiIHkyPSI1MDAiIHN0cm9rZT0iI2E4YzhhNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMzUwIiByPSI2MCIgZmlsbD0iIzZhOTg2MiIgb3BhY2l0eT0iMC40Ii8+CiAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iMzIwIiByPSI1MCIgZmlsbD0iIzVhODg1MiIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTIwIiB5PSIzODAiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiM0YTYwNDAiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjEwNTAiIGN5PSIzNzAiIHI9IjU1IiBmaWxsPSIjNmE5ODYyIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIxMTAwIiBjeT0iMzQwIiByPSI0NSIgZmlsbD0iIzVhODg1MiIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTA2NSIgeT0iMzkwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTEwIiBmaWxsPSIjNGE2MDQwIiBvcGFjaXR5PSIwLjQiLz4KPC9zdmc+'">
+        </div>
+        <div class="activity-body">
+          <span class="activity-tag">Formation</span>
+          <h3>Devenir moniteur</h3>
+          <p>Formations validées CNEAC pour vous investir dans l'association et animer des cours à votre tour.</p>
+        </div>
+      </div>
+
+      <div class="activity-card" style="background: var(--green-pale); border: none; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:2rem; text-align:center;">
+        <div style="font-size:2.5rem; margin-bottom:1rem;">🐾</div>
+        <h3 style="font-family:'DM Serif Display',serif; margin-bottom:0.5rem;">Une séance d'essai gratuite</h3>
+        <p style="font-size:14px; color:var(--text-muted); margin-bottom:1.5rem;">Venez découvrir sans engagement. Tous les samedis dès 14h.</p>
+        <a href="#contact" class="btn-primary" style="font-size:14px; padding:10px 22px;">Prendre contact</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MONITEURS -->
+<section id="moniteurs">
+  <div class="container">
+    <p class="section-tag">L'équipe</p>
+    <h2 class="section-title">Nos moniteurs diplômés</h2>
+    <p class="section-intro">Certifiés par la Centrale Canine, passionnés de cynophilie, certains ont travaillé au plus haut niveau de l'agility français.</p>
+
+    <div class="monitors-grid">
+
+      <div class="monitor-card">
+        <div class="monitor-avatar">
+          <img src="https://acstillysurseulles.e-monsite.com/medias/images/dsc-3897-2.jpeg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Antoine" loading="lazy">
+        </div>
+        <span class="monitor-badge">Diplômé</span>
+        <h3>Antoine</h3>
+        <ul>
+          <li>Moniteur école du chiot</li>
+          <li>Éducation canine niv. 2</li>
+          <li>Agility niv. 2</li>
+          <li>Flyball niv. 1</li>
+        </ul>
+      </div>
+
+      <div class="monitor-card">
+        <div class="monitor-avatar">
+          <img src="https://acstillysurseulles.e-monsite.com/medias/images/img-8346-2.jpeg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Jean-Claude" loading="lazy">
+        </div>
+        <span class="monitor-badge">Diplômé</span>
+        <h3>Jean-Claude</h3>
+        <ul>
+          <li>Moniteur école du chiot</li>
+          <li>Éducation canine niv. 2</li>
+          <li>Agility niv. 1</li>
+        </ul>
+      </div>
+
+      <div class="monitor-card">
+        <div class="monitor-avatar">
+          <img src="https://acstillysurseulles.e-monsite.com/medias/images/border-collie-667488-1280.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Amandine" loading="lazy">
+        </div>
+        <span class="monitor-badge">Diplômée</span>
+        <h3>Amandine</h3>
+        <ul>
+          <li>Moniteur école du chiot</li>
+          <li>Éducation canine niv. 1</li>
+        </ul>
+      </div>
+
+      <div class="monitor-card">
+        <div class="monitor-avatar">
+          <div class="monitor-avatar-placeholder">🐕</div>
+        </div>
+        <span class="monitor-badge">Diplômé</span>
+        <h3>Jean-Marie</h3>
+        <ul>
+          <li>Moniteur école du chiot</li>
+          <li>Éducation canine niv. 1</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="monitors-in-training">
+      <h3>En cours de formation</h3>
+      <div class="monitors-grid">
+
+        <div class="monitor-card">
+          <div class="monitor-avatar">
+            <img src="https://acstillysurseulles.e-monsite.com/medias/images/berger-blanc-suisse-821x1024.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Isabelle" loading="lazy">
+          </div>
+          <span class="monitor-badge" style="background:#f0f0eb; color:var(--text-muted);">En formation</span>
+          <h3>Isabelle</h3>
+          <ul>
+            <li>École du chiot</li>
+            <li>Éducation canine</li>
+          </ul>
+        </div>
+
+        <div class="monitor-card">
+          <div class="monitor-avatar">
+            <img src="https://acstillysurseulles.e-monsite.com/medias/images/nienna-portrait.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Léa" loading="lazy">
+          </div>
+          <span class="monitor-badge" style="background:#f0f0eb; color:var(--text-muted);">En formation</span>
+          <h3>Léa</h3>
+          <ul>
+            <li>Agility</li>
+          </ul>
+        </div>
+
+        <div class="monitor-card">
+          <div class="monitor-avatar">
+            <img src="https://acstillysurseulles.e-monsite.com/medias/images/dog-small-munsterlander-a-healthy-small-munsterlander-lying-down-waiting-for-a-command.jpg" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Marie" loading="lazy">
+          </div>
+          <span class="monitor-badge" style="background:#f0f0eb; color:var(--text-muted);">En formation</span>
+          <h3>Marie</h3>
+          <ul>
+            <li>Agility</li>
+          </ul>
+        </div>
+
+        <div class="monitor-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:180px;">
+          <p style="font-size:13px; color:var(--text-muted); text-align:center;">Vous souhaitez rejoindre l'équipe ?<br><a href="#contact" style="color:var(--green); text-decoration:none; font-weight:600;">Contactez-nous</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarifs">
+  <div class="container">
+    <p class="section-tag">Adhésion</p>
+    <h2 class="section-title">Tarifs & adhésion</h2>
+    <p class="section-intro">Une adhésion annuelle pour accéder à toutes nos activités. Première séance d'essai toujours gratuite et sans engagement.</p>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-label">Adhésion simple</div>
+        <div class="pricing-amount"><sup>€</sup>30</div>
+        <div class="pricing-per">par an · sans activités</div>
+        <ul class="pricing-features">
+          <li>Licence CNEAC</li>
+          <li>Avantages partenaires commerciaux</li>
+          <li>Tarifs préférentiels sur les événements</li>
+        </ul>
+        <a href="https://amicale-cynophile-sportive-de-tilly-sur-seulles.s2.yapla.com/fr/acsts-7964/adhesion/" target="_blank" class="btn-secondary">S'inscrire</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-featured-badge">⭐ Le plus populaire</div>
+        <div class="pricing-label">1 chien</div>
+        <div class="pricing-amount"><sup>€</sup>120</div>
+        <div class="pricing-per">par an</div>
+        <ul class="pricing-features">
+          <li>Tous les cours (éducation, agility, obéissance)</li>
+          <li>Cani-randos (dès 1 an du chien)</li>
+          <li>Tarifs préférentiels manifestations</li>
+          <li>Réductions chez Nourrir comme la Nature</li>
+        </ul>
+        <a href="https://amicale-cynophile-sportive-de-tilly-sur-seulles.s2.yapla.com/fr/acsts-7964/adhesion/" target="_blank" class="btn-primary">Adhérer maintenant</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-label">2 chiens</div>
+        <div class="pricing-amount"><sup>€</sup>180</div>
+        <div class="pricing-per">par an</div>
+        <ul class="pricing-features">
+          <li>Tous les cours pour 2 chiens</li>
+          <li>Cani-randos</li>
+          <li>Tarifs préférentiels manifestations</li>
+          <li>Réductions chez Nourrir comme la Nature</li>
+        </ul>
+        <a href="https://amicale-cynophile-sportive-de-tilly-sur-seulles.s2.yapla.com/fr/acsts-7964/adhesion/" target="_blank" class="btn-secondary">S'inscrire</a>
+      </div>
+
+    </div>
+
+    <div class="pricing-note">
+      <strong>3 chiens ou plus :</strong> 220 € par an · Mêmes avantages que la formule 2 chiens. <br>
+      <strong>Séance d'essai :</strong> Votre première séance est toujours gratuite et sans engagement. Venez n'importe quel samedi à 14h !
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="container">
+    <p class="section-tag">Photos</p>
+    <h2 class="section-title">Galerie</h2>
+    <p class="section-intro">Quelques images de la vie du club. Suivez-nous sur <a href="https://www.instagram.com/acstillysurseulles/" target="_blank" style="color:var(--green)">Instagram</a> pour plus de photos !</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDcwMCI+CiAgPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjZThmMGU1Ii8+CiAgPHJlY3QgeT0iNTAwIiB3aWR0aD0iMTIwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNjOGRjYzUiLz4KICA8ZWxsaXBzZSBjeD0iOTAwIiBjeT0iMjAwIiByeD0iMzAwIiByeT0iMTgwIiBmaWxsPSIjZDRlOGQwIiBvcGFjaXR5PSIwLjUiLz4KICA8ZWxsaXBzZSBjeD0iMzAwIiBjeT0iNTIwIiByeD0iODAiIHJ5PSI1MCIgZmlsbD0iIzhhYWI4MiIgb3BhY2l0eT0iMC43Ii8+CiAgPHJlY3QgeD0iMjIwIiB5PSI0OTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzAiIGZpbGw9IiM3YTliNzIiLz4KICA8cmVjdCB4PSI3MDAiIHk9IjQ0MCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjgwIiBmaWxsPSIjNWM3YTU1Ii8+CiAgPHJlY3QgeD0iOTAwIiB5PSI0NDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4MCIgZmlsbD0iIzVjN2E1NSIvPgogIDxyZWN0IHg9IjY5MCIgeT0iNDUwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZTA3MDMwIiByeD0iNSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc1MCwzNTApIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMCIgcng9IjYwIiByeT0iMjgiIGZpbGw9IiM0YTM1MjAiIHRyYW5zZm9ybT0icm90YXRlKC0yMCkiLz4KICAgIDxjaXJjbGUgY3g9IjU1IiBjeT0iLTI1IiByPSIyMiIgZmlsbD0iIzRhMzUyMCIvPgogICAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iLTE4IiByeD0iMTIiIHJ5PSI5IiBmaWxsPSIjNmE1MDMwIi8+CiAgICA8ZWxsaXBzZSBjeD0iNDgiIGN5PSItNDIiIHJ4PSIxMCIgcnk9IjE2IiBmaWxsPSIjM2EyNTEwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAsNDgsLTQyKSIvPgogICAgPGxpbmUgeDE9Ii0zMCIgeTE9IjE1IiB4Mj0iLTUwIiB5Mj0iNTUiIHN0cm9rZT0iIzRhMzUyMCIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iLTEwIiB5MT0iMjAiIHgyPSItNSIgeTI9IjYwIiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9IjMwIiB5MT0iMTAiIHgyPSI2MCIgeTI9IjQwIiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9IjEwIiB5MT0iMTgiIHgyPSIyMCIgeTI9IjU1IiBzdHJva2U9IiM0YTM1MjAiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KICA8bGluZSB4MT0iMCIgeTE9IjUwMCIgeDI9IjEyMDAiIHkyPSI1MDAiIHN0cm9rZT0iI2E4YzhhNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMzUwIiByPSI2MCIgZmlsbD0iIzZhOTg2MiIgb3BhY2l0eT0iMC40Ii8+CiAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iMzIwIiByPSI1MCIgZmlsbD0iIzVhODg1MiIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTIwIiB5PSIzODAiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiM0YTYwNDAiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjEwNTAiIGN5PSIzNzAiIHI9IjU1IiBmaWxsPSIjNmE5ODYyIiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIxMTAwIiBjeT0iMzQwIiByPSI0NSIgZmlsbD0iIzVhODg1MiIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iMTA2NSIgeT0iMzkwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTEwIiBmaWxsPSIjNGE2MDQwIiBvcGFjaXR5PSIwLjQiLz4KPC9zdmc+" alt="Agility" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2Y1ZjBlOCIvPgogIDxyZWN0IHk9IjQyMCIgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNkNGM4YTgiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMjAsMjgwKSI+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9IjMwIiByeD0iMzUiIHJ5PSI0NSIgZmlsbD0iI2M4YTA2MCIvPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9Ii0xNSIgcj0iMjgiIGZpbGw9IiNjOGEwNjAiLz4KICAgIDxlbGxpcHNlIGN4PSIxNCIgY3k9Ii0zNSIgcng9IjkiIHJ5PSIxNiIgZmlsbD0iI2I4OTA1MCIgdHJhbnNmb3JtPSJyb3RhdGUoMTUsMTQsLTM1KSIvPgogICAgPGVsbGlwc2UgY3g9Ii0xNCIgY3k9Ii0zNSIgcng9IjkiIHJ5PSIxNiIgZmlsbD0iI2I4OTA1MCIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1LC0xNCwtMzUpIi8+CiAgICA8Y2lyY2xlIGN4PSI4IiBjeT0iLTEwIiByPSI1IiBmaWxsPSIjMmExYTBhIi8+CiAgICA8Y2lyY2xlIGN4PSItOCIgY3k9Ii0xMCIgcj0iNSIgZmlsbD0iIzJhMWEwYSIvPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSIwIiByeD0iOCIgcnk9IjYiIGZpbGw9IiNkNGIwNzAiLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIzIiByPSI2IiBmaWxsPSIjZDA3MDgwIi8+CiAgPC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUyMCwzMDApIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMjAiIHJ4PSI0MCIgcnk9IjMwIiBmaWxsPSIjOGE2MDQwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzApIi8+CiAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9Ii0yMCIgcj0iMjQiIGZpbGw9IiM4YTYwNDAiLz4KICAgIDxlbGxpcHNlIGN4PSI0MiIgY3k9Ii0zMiIgcng9IjgiIHJ5PSIxNCIgZmlsbD0iIzdhNTAzMCIvPgogICAgPGNpcmNsZSBjeD0iMzgiIGN5PSItMTQiIHI9IjQiIGZpbGw9IiMyYTFhMGEiLz4KICAgIDxlbGxpcHNlIGN4PSI1MCIgY3k9Ii0xMCIgcng9IjEwIiByeT0iNyIgZmlsbD0iIzlhNzA1MCIvPgogICAgPGxpbmUgeDE9Ii0yMCIgeTE9IjAiIHgyPSItNDAiIHkyPSItMjAiIHN0cm9rZT0iIzhhNjA0MCIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9Ii0xMCIgeTI9Ii0zMCIgc3Ryb2tlPSIjOGE2MDQwIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwvZz4KICA8Y2lyY2xlIGN4PSIzODAiIGN5PSIzOTAiIHI9IjI1IiBmaWxsPSIjZTA2MDMwIi8+Cjwvc3ZnPg==" alt="Chiots" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2VlZjRlYyIvPgogIDxyZWN0IHk9IjQ1MCIgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNjOGRjYzUiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyNTAsMTUwKSI+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMzAiIGZpbGw9IiM1YTQwMzAiLz4KICAgIDxyZWN0IHg9Ii0yNSIgeT0iMzAiIHdpZHRoPSI1MCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiMzYTUwNzAiIHJ4PSI4Ii8+CiAgICA8cmVjdCB4PSItMjUiIHk9IjMwIiB3aWR0aD0iMjIiIGhlaWdodD0iMTMwIiBmaWxsPSIjMmE0MDYwIiByeD0iNiIvPgogICAgPGxpbmUgeDE9IjI1IiB5MT0iNjAiIHgyPSIxMjAiIHkyPSI4MCIgc3Ryb2tlPSIjNWE0MDMwIiBzdHJva2Utd2lkdGg9IjE4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxyZWN0IHg9Ii0yMCIgeT0iMTY1IiB3aWR0aD0iMTgiIGhlaWdodD0iOTAiIGZpbGw9IiMyYTMwNTAiIHJ4PSI2Ii8+CiAgICA8cmVjdCB4PSI1IiB5PSIxNjUiIHdpZHRoPSIxOCIgaGVpZ2h0PSI5MCIgZmlsbD0iIzJhMzA1MCIgcng9IjYiLz4KICA8L2c+CiAgPHBhdGggZD0iTSAzNzAgMjMwIFEgNDUwIDIxMCA0ODAgMjgwIiBzdHJva2U9IiM4YTcwNjAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iNSwzIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDgwLDMxMCkiPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSIyMCIgcng9IjMyIiByeT0iMzgiIGZpbGw9IiNjMDkwNTAiLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSItMTgiIHI9IjI2IiBmaWxsPSIjYzA5MDUwIi8+CiAgICA8ZWxsaXBzZSBjeD0iMTIiIGN5PSItMzYiIHJ4PSI4IiByeT0iMTQiIGZpbGw9IiNhODcwNDAiLz4KICAgIDxlbGxpcHNlIGN4PSItMTIiIGN5PSItMzYiIHJ4PSI4IiByeT0iMTQiIGZpbGw9IiNhODcwNDAiLz4KICAgIDxjaXJjbGUgY3g9IjciIGN5PSItMTIiIHI9IjUiIGZpbGw9IiMyYTFhMGEiLz4KICAgIDxjaXJjbGUgY3g9Ii03IiBjeT0iLTEyIiByPSI1IiBmaWxsPSIjMmExYTBhIi8+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9Ii0yIiByeD0iNyIgcnk9IjUiIGZpbGw9IiNkNGIwNjAiLz4KICAgIDxsaW5lIHgxPSIyNSIgeTE9IjEwIiB4Mj0iNTUiIHkyPSItMTAiIHN0cm9rZT0iI2MwOTA1MCIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8ZWxsaXBzZSBjeD0iNjAiIGN5PSItMTMiIHJ4PSIxMiIgcnk9IjkiIGZpbGw9IiNiMDgwNDAiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Chien adulte en cours" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2U4ZjBlNSIvPgogIDxyZWN0IHk9IjQ3MCIgd2lkdGg9IjgwMCIgaGVpZ2h0PSIxMzAiIGZpbGw9IiNiOGQwYjUiLz4KICA8cG9seWdvbiBwb2ludHM9IjEyMCw0NzAgMjAwLDI3MCAyODAsNDcwIiBmaWxsPSIjNGE3YTQyIiBvcGFjaXR5PSIwLjgiLz4KICA8cG9seWdvbiBwb2ludHM9IjEyMCw0NzAgMjAwLDI3MCAxNDAsNDcwIiBmaWxsPSIjM2E2YTMyIiBvcGFjaXR5PSIwLjgiLz4KICA8bGluZSB4MT0iMzgwIiB5MT0iMzAwIiB4Mj0iMzgwIiB5Mj0iNDcwIiBzdHJva2U9IiNlMDcwMzAiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxsaW5lIHgxPSI0MTAiIHkxPSIzMDAiIHgyPSI0MTAiIHkyPSI0NzAiIHN0cm9rZT0iI2UwNzAzMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPGxpbmUgeDE9IjQ0MCIgeTE9IjMwMCIgeDI9IjQ0MCIgeTI9IjQ3MCIgc3Ryb2tlPSIjZTA3MDMwIiBzdHJva2Utd2lkdGg9IjYiLz4KICA8bGluZSB4MT0iNDcwIiB5MT0iMzAwIiB4Mj0iNDcwIiB5Mj0iNDcwIiBzdHJva2U9IiNlMDcwMzAiIHN0cm9rZS13aWR0aD0iNiIvPgogIDxsaW5lIHgxPSI1MDAiIHkxPSIzMDAiIHgyPSI1MDAiIHkyPSI0NzAiIHN0cm9rZT0iI2UwNzAzMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPGVsbGlwc2UgY3g9IjY1MCIgY3k9IjQzMCIgcng9IjUwIiByeT0iNDAiIGZpbGw9IiM1YTg4NTIiIG9wYWNpdHk9IjAuOCIvPgogIDxyZWN0IHg9IjYwMCIgeT0iNDAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNGE3ODQyIi8+CiAgPGVsbGlwc2UgY3g9IjY1MCIgY3k9IjQwMCIgcng9IjUwIiByeT0iMzUiIGZpbGw9IiM2YTk4NjIiIG9wYWNpdHk9IjAuNiIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMxMCwzODApIHJvdGF0ZSgtMTUpIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iMCIgcng9IjUwIiByeT0iMjIiIGZpbGw9IiMyYTJhMmEiLz4KICAgIDxlbGxpcHNlIGN4PSIzMCIgY3k9Ii01IiByeD0iMjUiIHJ5PSIxNiIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iNDgiIGN5PSItMTgiIHI9IjE4IiBmaWxsPSIjMmEyYTJhIi8+CiAgICA8Y2lyY2xlIGN4PSI1NCIgY3k9Ii0yNiIgcj0iNiIgZmlsbD0iI2ZmZmZmZiIvPgogICAgPGNpcmNsZSBjeD0iNTYiIGN5PSItMTIiIHI9IjUiIGZpbGw9IiMxYTFhMWEiLz4KICAgIDxlbGxpcHNlIGN4PSI2MCIgY3k9Ii0xMiIgcng9IjkiIHJ5PSI2IiBmaWxsPSIjM2EzYTNhIi8+CiAgICA8bGluZSB4MT0iLTMwIiB5MT0iMTUiIHgyPSItNDUiIHkyPSI0NSIgc3Ryb2tlPSIjMmEyYTJhIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgPGxpbmUgeDE9Ii0xMCIgeTE9IjE4IiB4Mj0iMCIgeTI9IjUwIiBzdHJva2U9IiMyYTJhMmEiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8bGluZSB4MT0iMjAiIHkxPSIxMiIgeDI9IjQwIiB5Mj0iMzUiIHN0cm9rZT0iIzJhMmEyYSIgc3Ryb2tlLXdpZHRoPSI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxsaW5lIHgxPSI1IiB5MT0iMTgiIHgyPSIxNSIgeTI9IjUwIiBzdHJva2U9IiMyYTJhMmEiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPC9nPgo8L3N2Zz4=" alt="Agility loisir" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KICA8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2UwZWNkOCIvPgogIDxlbGxpcHNlIGN4PSIyMDAiIGN5PSI0NTAiIHJ4PSIzMDAiIHJ5PSIyMDAiIGZpbGw9IiNiOGQwYjAiIG9wYWNpdHk9IjAuNyIvPgogIDxlbGxpcHNlIGN4PSI2NTAiIGN5PSI0MzAiIHJ4PSIyODAiIHJ5PSIxODAiIGZpbGw9IiNhOGMwYTAiIG9wYWNpdHk9IjAuNyIvPgogIDxlbGxpcHNlIGN4PSI0MDAiIGN5PSI1MDAiIHJ4PSI1MDAiIHJ5PSIxNTAiIGZpbGw9IiNjOGQ4YzAiLz4KICA8cGF0aCBkPSJNIDUwIDU2MCBRIDMwMCA0ODAgNTAwIDUyMCBRIDY1MCA1NTAgNzUwIDUwMCIgc3Ryb2tlPSIjZDRjMDkwIiBzdHJva2Utd2lkdGg9IjIwIiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjgiLz4KICA8Y2lyY2xlIGN4PSI4MCIgY3k9IjM2MCIgcj0iNDAiIGZpbGw9IiM0YTgwNDAiLz4KICA8cmVjdCB4PSI3MyIgeT0iMzk1IiB3aWR0aD0iMTQiIGhlaWdodD0iNjAiIGZpbGw9IiMzYTUwMzAiLz4KICA8Y2lyY2xlIGN4PSI3MjAiIGN5PSIzNDAiIHI9IjQ1IiBmaWxsPSIjNGE4MDQwIi8+CiAgPHJlY3QgeD0iNzEzIiB5PSIzNzgiIHdpZHRoPSIxNCIgaGVpZ2h0PSI2NSIgZmlsbD0iIzNhNTAzMCIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM0MCwzNTApIj4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSItMzAiIHI9IjIwIiBmaWxsPSIjYzhhMDgwIi8+CiAgICA8cmVjdCB4PSItMTgiIHk9Ii0xMCIgd2lkdGg9IjM2IiBoZWlnaHQ9IjgwIiBmaWxsPSIjNGE2MDkwIiByeD0iNiIvPgogICAgPHJlY3QgeD0iMTUiIHk9Ii01IiB3aWR0aD0iMjIiIGhlaWdodD0iNTAiIGZpbGw9IiM4YTUwMzAiIHJ4PSI0Ii8+CiAgICA8bGluZSB4MT0iLTIwIiB5MT0iMTAiIHgyPSItNDAiIHkyPSI4MCIgc3Ryb2tlPSIjOGE3MDYwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxsaW5lIHgxPSIyMCIgeTE9IjIwIiB4Mj0iMzUiIHkyPSI3MCIgc3Ryb2tlPSIjOGE3MDYwIiBzdHJva2Utd2lkdGg9IjQiLz4KICAgIDxyZWN0IHg9Ii0xNSIgeT0iNjgiIHdpZHRoPSIxNCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzJhMzA1MCIgcng9IjUiIHRyYW5zZm9ybT0icm90YXRlKDUsLTE1LDY4KSIvPgogICAgPHJlY3QgeD0iMyIgeT0iNjgiIHdpZHRoPSIxNCIgaGVpZ2h0PSI2MCIgZmlsbD0iIzJhMzA1MCIgcng9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0xMCwzLDY4KSIvPgogIDwvZz4KICA8cGF0aCBkPSJNIDM1OCAzNzAgUSA0MjAgMzUwIDQ1MCAzOTAiIHN0cm9rZT0iIzhhNzA2MCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDUwLDM5MCkiPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSIxMCIgcng9IjI4IiByeT0iMjAiIGZpbGw9IiNjMDkwNTAiIHRyYW5zZm9ybT0icm90YXRlKC0xMCkiLz4KICAgIDxjaXJjbGUgY3g9IjIwIiBjeT0iLTgiIHI9IjE4IiBmaWxsPSIjYzA5MDUwIi8+CiAgICA8ZWxsaXBzZSBjeD0iMzAiIGN5PSItMjAiIHJ4PSI3IiByeT0iMTIiIGZpbGw9IiNhODcwNDAiLz4KICAgIDxjaXJjbGUgY3g9IjI3IiBjeT0iLTQiIHI9IjQiIGZpbGw9IiMyYTFhMGEiLz4KICAgIDxwYXRoIGQ9Ik0gLTI4IDUgUSAtNTAgLTE1IC00MCAtMzAiIHN0cm9rZT0iI2MwOTA1MCIgc3Ryb2tlLXdpZHRoPSI2IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+Cjwvc3ZnPg==" alt="Cani-rando" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="container">
+    <p class="section-tag">Événements</p>
+    <h2 class="section-title">Agenda</h2>
+    <p class="section-intro">Concours, stages de perfectionnement, cani-randos… retrouvez ici tous nos prochains événements.</p>
+
+    <div class="agenda-list">
+      <div class="agenda-empty">
+        <div style="font-size:2rem; margin-bottom:0.5rem;">📅</div>
+        <strong>Aucun événement à venir pour le moment</strong>
+        <p>Suivez notre page <a href="https://www.facebook.com/acstillysurseulles/" target="_blank" style="color:var(--green)">Facebook</a> pour être informé en temps réel de nos prochaines dates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-tag">Nous rejoindre</p>
+    <h2 class="section-title">Contactez-nous</h2>
+    <p class="section-intro">Une question ? Envie d'essayer ? N'hésitez pas à nous écrire, nous répondons rapidement.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Informations pratiques</h3>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <strong>Adresse</strong>
+              <span>Rue Jacques Prévert<br>14250 Tilly-sur-Seulles<br>GPS : 49°10'10.5"N – 0°37'37.1"W</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕑</div>
+            <div class="contact-item-text">
+              <strong>Horaires</strong>
+              <span>Tous les samedis de 14h00 à 17h00</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🗺️</div>
+            <div class="contact-item-text">
+              <strong>Accès</strong>
+              <span>Entre Bayeux et Villers-Bocage, dans le Calvados (Normandie)</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <p style="font-size:13px; font-weight:600; color:var(--text-muted); margin-bottom:0.8rem; text-transform:uppercase; letter-spacing:0.06em;">Nos réseaux</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/acstillysurseulles/" target="_blank" class="social-link" title="Facebook">📘</a>
+            <a href="https://www.instagram.com/acstillysurseulles/" target="_blank" class="social-link" title="Instagram">📷</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3 style="font-family:'DM Serif Display',serif; font-size:1.4rem; margin-bottom:1.5rem;">Envoyer un message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" placeholder="Marie">
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" placeholder="Dupont">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="marie@exemple.fr">
+        </div>
+        <div class="form-group">
+          <label for="sujet">Sujet</label>
+          <select id="sujet">
+            <option value="">Choisissez un sujet</option>
+            <option>Informations sur les cours</option>
+            <option>Adhésion au club</option>
+            <option>Séance d'essai</option>
+            <option>Agility</option>
+            <option>Cani-rando</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Bonjour, j'aimerais avoir des informations sur…"></textarea>
+        </div>
+        <button class="form-submit" onclick="sendContact()">Envoyer le message →</button>
+        <p id="form-success" style="display:none; margin-top:1rem; color:var(--green); font-size:13px; text-align:center;">✅ Message envoyé ! Nous reviendrons vers vous rapidement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENAIRES -->
+<section id="partenaires">
+  <div class="container">
+    <div class="partners-header">
+      <p>Nos partenaires</p>
+    </div>
+    <div class="partners-grid">
+      <a href="https://tilly-sur-seulles.fr/" target="_blank" class="partner-logo">
+        <img src="https://acstillysurseulles.e-monsite.com/medias/images/cropped-logo-tilly-sur-seulles-rvb-1.webp" onerror="this.closest('.partner-logo').style.display='none'" alt="Commune de Tilly-sur-Seulles">
+      </a>
+      <a href="https://www.nourrircommelanature.com/" target="_blank" class="partner-logo">
+        <img src="https://acstillysurseulles.e-monsite.com/medias/images/nourrircommelanature.com.png" onerror="this.closest('.partner-logo').style.display='none'" alt="Nourrir comme la Nature">
+      </a>
+      <a href="https://www.facebook.com/graphikseven/" target="_blank" class="partner-logo">
+        <img src="https://acstillysurseulles.e-monsite.com/medias/images/g7.png" onerror="this.closest('.partner-logo').style.display='none'" alt="G7 Graphik Seven">
+      </a>
+      <a href="https://www.credit-agricole.fr/ca-normandie/association.html" target="_blank" class="partner-logo">
+        <img src="https://acstillysurseulles.e-monsite.com/medias/images/credit-agricole-normandie-logo-63e6ebd4ca-seeklogo.com-.png" onerror="this.closest('.partner-logo').style.display='none'" alt="Crédit Agricole Normandie">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://acstillysurseulles.e-monsite.com/medias/site/logos/ban-amicalecynophilesportive-2023-02.jpg" alt="Logo ACS Tilly-sur-Seulles" style="display:none">
+      <p>Association loi 1901 dédiée à l'éducation canine et à l'agility dans le Calvados, fondée sur la bienveillance et le renforcement positif.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#club">Le club</a></li>
+        <li><a href="#activites">Activités</a></li>
+        <li><a href="#moniteurs">Moniteurs</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#agenda">Agenda</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Nous suivre</h4>
+      <ul>
+        <li><a href="https://www.facebook.com/acstillysurseulles/" target="_blank">Facebook</a></li>
+        <li><a href="https://www.instagram.com/acstillysurseulles/" target="_blank">Instagram</a></li>
+        <li><a href="https://amicale-cynophile-sportive-de-tilly-sur-seulles.s2.yapla.com/fr/acsts-7964/adhesion/" target="_blank">Adhérer en ligne</a></li>
+      </ul>
+      <h4 style="margin-top:1.5rem;">Adresse</h4>
+      <ul>
+        <li><a>Rue Jacques Prévert</a></li>
+        <li><a>14250 Tilly-sur-Seulles</a></li>
+        <li><a>Calvados, Normandie</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Amicale Cynophile Sportive de Tilly-sur-Seulles · Association loi 1901</span>
+    <span>Samedis 14h–17h · Rue Jacques Prévert, 14250 Tilly-sur-Seulles</span>
+  </div>
+</footer>
+
+<script>
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Fake form submit
+  function sendContact() {
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    if (!email || !message) { alert('Merci de remplir au minimum votre email et votre message.'); return; }
+    document.getElementById('form-success').style.display = 'block';
+    document.querySelector('.form-submit').disabled = true;
+    document.querySelector('.form-submit').style.opacity = '0.5';
+  }
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id], footer');
+  const navItems = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    navItems.forEach(a => {
+      a.style.color = '';
+      if (a.getAttribute('href') === '#' + cur) a.style.color = 'var(--green)';
+    });
+  });
+</script>
+
+</body>
+</html>
