@@ -317,6 +317,88 @@ footer{background:var(--text);color:rgba(255,255,255,0.55);padding:3.5rem 2rem 2
   }
   .nav-links a:hover::after { left: 8%; right: 8%; }
 
+
+  /* ===== RESPONSIVE UNIVERSAL FIX ===== */
+  html, body { max-width: 100%; overflow-x: hidden; }
+  img { max-width: 100%; height: auto; }
+
+  /* NAV mobile */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem !important; }
+    .nav-links { display: none !important; }
+    .nav-links.open {
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: inherit;
+      border-bottom: 2px solid var(--border, #e0e0e0);
+      padding: 1rem 1.5rem;
+      gap: 0.5rem;
+      z-index: 99;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .nav-links.open a {
+      padding: 10px 0 !important;
+      border-bottom: 1px solid var(--border, #e0e0e0) !important;
+      height: auto !important;
+      font-size: 15px !important;
+    }
+    .nav-burger { display: flex !important; }
+
+    /* Hero */
+    .hero { grid-template-columns: 1fr !important; min-height: auto !important; }
+    .hero-left, .hero-content { padding: 2.5rem 1.5rem !important; }
+    .hero-right, .hero-logo-panel { padding: 2rem 1.5rem !important; clip-path: none !important; height: auto !important; }
+    .hero h1 { font-size: clamp(2rem, 8vw, 3rem) !important; }
+    .hero-stats, .hero-facts { flex-wrap: wrap; gap: 1.2rem !important; }
+    .hero-logo-wrap { width: 160px !important; height: 160px !important; }
+
+    /* Sections */
+    section { padding: 3.5rem 1.2rem !important; }
+    .container { padding: 0 !important; }
+    .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+
+    /* Grilles */
+    .about-grid, .about-layout, .contact-grid, .contact-wrap { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .activities-grid, .act-grid { grid-template-columns: 1fr !important; }
+    .monitors-grid, .mon-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .pricing-grid, .pricing-wrap { grid-template-columns: 1fr !important; }
+    .gallery-grid, .gal-grid { grid-template-columns: 1fr 1fr !important; grid-template-rows: auto !important; }
+    .gallery-item:first-child, .gal-item:first-child { grid-column: auto !important; aspect-ratio: 4/3 !important; }
+    .schedule-grid, .sched-cols, .hours-cols { grid-template-columns: 1fr !important; }
+    .footer-inner, .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .form-row { grid-template-columns: 1fr !important; }
+    .values-grid, .about-values, .about-highlights { grid-template-columns: 1fr 1fr !important; }
+    .pricing-grid { border: none !important; }
+    .pricing-card, .p-card { border-right: none !important; border-bottom: 1px solid var(--border, #e0e0e0) !important; }
+
+    /* Banner */
+    .banner, .hero-banner { max-height: 80px !important; }
+
+    /* Ticker */
+    .act-cta-strip { flex-direction: column !important; text-align: center !important; }
+
+    /* Footer */
+    .footer-bottom { flex-direction: column !important; text-align: center !important; gap: 0.4rem !important; }
+    .hero-actions { flex-direction: column !important; align-items: flex-start !important; }
+
+    /* About image frame */
+    .about-img-wrap::after { display: none !important; }
+    .about-logo-float { top: 8px !important; left: 8px !important; width: 54px !important; height: 54px !important; }
+    .about-badge, .about-img-badge { bottom: 8px !important; right: 8px !important; }
+  }
+
+  @media (max-width: 480px) {
+    .monitors-grid, .mon-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .hero-logo-wrap { width: 130px !important; height: 130px !important; }
+    .nav-logo-text span { display: none; }
+    .hero-pills { flex-direction: column !important; align-items: center !important; }
+    .social-links, .social-row { flex-wrap: wrap !important; }
+    .hero-info, .hero-stats, .hero-facts { gap: 1rem !important; }
+    .hero-info-item strong, .hero-stat strong, .hero-fact strong { font-size: 1.4rem !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -417,15 +499,15 @@ footer{background:var(--text);color:rgba(255,255,255,0.55);padding:3.5rem 2rem 2
       <p class="section-lead" style="max-width:320px;font-size:0.95rem">Certifiés par la Centrale Canine, passionnés de cynophilie.</p>
     </div>
     <div class="mon-grid">
-      <div class="mon-card"><div class="mon-avatar av-blue">AN</div><span class="mon-badge b-blue">Diplômé</span><h3>Antoine</h3><ul><li>École du chiot</li><li>Éducation niv. 2</li><li>Agility niv. 2</li><li>Flyball niv. 1</li></ul></div>
-      <div class="mon-card"><div class="mon-avatar av-blue">JC</div><span class="mon-badge b-blue">Diplômé</span><h3>Jean-Claude</h3><ul><li>École du chiot</li><li>Éducation niv. 2</li><li>Agility niv. 1</li></ul></div>
-      <div class="mon-card"><div class="mon-avatar av-blue">AM</div><span class="mon-badge b-blue">Diplômée</span><h3>Amandine</h3><ul><li>École du chiot</li><li>Éducation niv. 1</li></ul></div>
-      <div class="mon-card"><div class="mon-avatar av-blue">JM</div><span class="mon-badge b-blue">Diplômé</span><h3>Jean-Marie</h3><ul><li>École du chiot</li><li>Éducation niv. 1</li></ul></div>
+      <div class="mon-card"><div class="mon-avatar av-blue" style="background:transparent;overflow:hidden;padding:0"><img src="https://acstillysurseulles.e-monsite.com/medias/images/dsc-3897-2.jpeg" alt="Antoine" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none';this.parentElement.innerHTML='AN'"></div><span class="mon-badge b-blue">Diplômé</span><h3>Antoine</h3><ul><li>École du chiot</li><li>Éducation niv. 2</li><li>Agility niv. 2</li><li>Flyball niv. 1</li></ul></div>
+      <div class="mon-card"><div class="mon-avatar av-blue" style="background:transparent;overflow:hidden;padding:0"><img src="https://acstillysurseulles.e-monsite.com/medias/images/img-8346-2.jpeg" alt="Jean-Claude" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none';this.parentElement.innerHTML='JC'"></div><span class="mon-badge b-blue">Diplômé</span><h3>Jean-Claude</h3><ul><li>École du chiot</li><li>Éducation niv. 2</li><li>Agility niv. 1</li></ul></div>
+      <div class="mon-card"><div class="mon-avatar av-blue" style="background:transparent;overflow:hidden;padding:0"><img src="https://acstillysurseulles.e-monsite.com/medias/images/border-collie-667488-1280.jpg" alt="Amandine" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none';this.parentElement.innerHTML='AM'"></div><span class="mon-badge b-blue">Diplômée</span><h3>Amandine</h3><ul><li>École du chiot</li><li>Éducation niv. 1</li></ul></div>
+      <div class="mon-card"><div class="mon-avatar av-blue" style="background:transparent;overflow:hidden;padding:0"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iI2U4ZjNmYyIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwLDU1KSI+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9IjE1IiByeD0iMjIiIHJ5PSIxOCIgZmlsbD0iI2MwOTA1MCIvPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9Ii04IiByPSIyMCIgZmlsbD0iI2MwOTA1MCIvPgogICAgPGVsbGlwc2UgY3g9IjEyIiBjeT0iLTIyIiByeD0iNyIgcnk9IjEyIiBmaWxsPSIjYTg3MDQwIiB0cmFuc2Zvcm09InJvdGF0ZSgxMCwxMiwtMjIpIi8+CiAgICA8ZWxsaXBzZSBjeD0iLTEyIiBjeT0iLTIyIiByeD0iNyIgcnk9IjEyIiBmaWxsPSIjYTg3MDQwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTAsLTEyLC0yMikiLz4KICAgIDxjaXJjbGUgY3g9IjciIGN5PSItNSIgcj0iNCIgZmlsbD0iIzFhMGEwMCIvPgogICAgPGNpcmNsZSBjeD0iLTciIGN5PSItNSIgcj0iNCIgZmlsbD0iIzFhMGEwMCIvPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSI1IiByeD0iOCIgcnk9IjYiIGZpbGw9IiNkNGIwNjAiLz4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSI3IiByPSI1IiBmaWxsPSIjZDA3MDgwIi8+CiAgPC9nPgo8L3N2Zz4=" alt="Jean-Marie" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none';this.parentElement.innerHTML='JM'"></div><span class="mon-badge b-blue">Diplômé</span><h3>Jean-Marie</h3><ul><li>École du chiot</li><li>Éducation niv. 1</li></ul></div>
     </div>
     <div class="mon-grid" style="margin-top:1.2rem">
-      <div class="mon-card"><div class="mon-avatar av-gray">IS</div><span class="mon-badge b-gray">En formation</span><h3>Isabelle</h3><ul><li>École du chiot</li><li>Éducation canine</li></ul></div>
-      <div class="mon-card"><div class="mon-avatar av-gray">LÉ</div><span class="mon-badge b-gray">En formation</span><h3>Léa</h3><ul><li>Agility</li></ul></div>
-      <div class="mon-card"><div class="mon-avatar av-gray">MA</div><span class="mon-badge b-gray">En formation</span><h3>Marie</h3><ul><li>Agility</li></ul></div>
+      <div class="mon-card"><div class="mon-avatar av-gray" style="background:transparent;overflow:hidden;padding:0"><img src="https://acstillysurseulles.e-monsite.com/medias/images/berger-blanc-suisse-821x1024.jpg" alt="Isabelle" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none';this.parentElement.innerHTML='IS'"></div><span class="mon-badge b-gray">En formation</span><h3>Isabelle</h3><ul><li>École du chiot</li><li>Éducation canine</li></ul></div>
+      <div class="mon-card"><div class="mon-avatar av-gray" style="background:transparent;overflow:hidden;padding:0"><img src="https://acstillysurseulles.e-monsite.com/medias/images/nienna-portrait.jpg" alt="Léa" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none';this.parentElement.innerHTML='LÉ'"></div><span class="mon-badge b-gray">En formation</span><h3>Léa</h3><ul><li>Agility</li></ul></div>
+      <div class="mon-card"><div class="mon-avatar av-gray" style="background:transparent;overflow:hidden;padding:0"><img src="https://acstillysurseulles.e-monsite.com/medias/images/dog-small-munsterlander-a-healthy-small-munsterlander-lying-down-waiting-for-a-command.jpg" alt="Marie" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none';this.parentElement.innerHTML='MA'"></div><span class="mon-badge b-gray">En formation</span><h3>Marie</h3><ul><li>Agility</li></ul></div>
       <div class="mon-card" style="border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;text-align:center"><p style="font-size:14px;color:var(--muted);font-weight:600">Vous souhaitez rejoindre l'équipe ? 🙋<br><a href="#contact" style="color:var(--blue);font-weight:800;text-decoration:none">Contactez-nous !</a></p></div>
     </div>
   </div>
@@ -567,6 +649,57 @@ footer{background:var(--text);color:rgba(255,255,255,0.55);padding:3.5rem 2rem 2
     const navL = document.getElementById('navLinks');
     burger.addEventListener('click', () => navL && navL.classList.toggle('open'));
   }
+})();
+</script>
+
+
+<script>
+(function(){
+  // Ensure burger button exists in all designs
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  
+  var navLinks = nav.querySelector('.nav-links, #navLinks');
+  if (!navLinks) return;
+  navLinks.id = 'navLinks';
+
+  // Create burger if not present
+  var burger = nav.querySelector('.nav-burger, #burger');
+  if (!burger) {
+    burger = document.createElement('button');
+    burger.id = 'burger';
+    burger.className = 'nav-burger';
+    burger.setAttribute('aria-label', 'Menu');
+    burger.innerHTML = '<span></span><span></span><span></span>';
+    burger.style.cssText = 'display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;';
+    nav.appendChild(burger);
+  }
+  burger.id = 'burger';
+
+  // Style burger spans
+  var style = document.createElement('style');
+  style.textContent = `
+    .nav-burger { display: none !important; }
+    @media (max-width: 768px) {
+      .nav-burger { display: flex !important; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 6px; }
+      .nav-burger span { display: block; width: 24px; height: 2px; background: currentColor; border-radius: 2px; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  burger.addEventListener('click', function() {
+    navLinks.classList.toggle('open');
+  });
+
+  // Close on link click
+  navLinks.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { navLinks.classList.remove('open'); });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (!nav.contains(e.target)) navLinks.classList.remove('open');
+  });
 })();
 </script>
 
